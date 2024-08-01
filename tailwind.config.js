@@ -11,11 +11,24 @@ export default {
     ],
 
     theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
+        fontFamily: {
+            poppins: 'Poppins, sans-serif'
         },
+        extend: {
+            colors: {
+                "green": '#9CDBA6',
+                "tael": '#50B498',
+                "nature": '#468585',
+                "gradient": '#DEF9C4',
+                "blue":"#478CCF",
+                "vintage":"#F7E7DC",
+                "btn-bg":"#405D72"
+            },
+            screens: {
+                'laptopLg': '1160px',
+                'laptopXl': '1440px',
+            }
+        }
     },
 
     plugins: [forms],

@@ -1,0 +1,12 @@
+.input-primary { 
+    @apply focus:outline-blue outline-blue focus:outline-tael focus:outline-none;
+}
+
+.input-error {
+    @apply ring ring-red-600;
+}
+
+.input-primary-outline {
+    @apply bg-[#ffff] focus:bg-[#ffff] border-tael focus:border-tael;
+    @apply file:tael file:vintage file:rounded-md file:p-2;
+}
