@@ -22,6 +22,11 @@ Route::prefix("prototype")->name('prototype.')->group(function (){
         // return Inertia::render("Prototype/Register");
         return Inertia::render("Prototype/Dashboard");
     })->name('dashboard');
+
+    route::get('/subscription',function(){
+        // return Inertia::render("Prototype/Register");
+        return Inertia::render("Prototype/Subscription");
+    })->name('subscription');
     
 });
 
