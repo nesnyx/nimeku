@@ -27,6 +27,11 @@ Route::prefix("prototype")->name('prototype.')->group(function (){
         // return Inertia::render("Prototype/Register");
         return Inertia::render("Prototype/Subscription");
     })->name('subscription');
+
+    route::get('/anime/{id}',function(){
+        // return Inertia::render("Prototype/Register");
+        return Inertia::render("Prototype/Anime/AnimeDetail");
+    })->name('anime.detail');
     
 });
 
