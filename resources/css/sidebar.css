@@ -1,0 +1,22 @@
+@layer components{
+    .side-link{
+        @apply flex items-center font-normal text-black text-sm w-full mb-5 gap-3 transition-all;
+    }
+
+    .side-link svg{
+        @apply text-[#B7B7B7];
+    }
+    .side-link.active{
+        @apply font-semibold border-r-[3px] border-tael;
+    }
+
+    .side-link.active svg{
+        @apply text-tael;
+    }
+
+    .input.top-search{
+        @apply rounded-full border border-tael placeholder:text-nature text-base text-tael px-5 py-[11px]
+        w-full max-w-[570px] focus:outline-none focus:ring-2 transition-all bg-no-repeat bg-center
+        bg-[center_right_20px];
+    }
+}
