@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\AnimeController;
+use App\Http\Controllers\User\Dashboard\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,28 +20,26 @@ Route::prefix("prototype")->name('prototype.')->group(function (){
         return Inertia::render("Prototype/Register");
     })->name('register');
 
-    Route::middleware("auth:web")->group(function (){
-        route::get('/dashboard',function(){
-            // return Inertia::render("Prototype/Register");
-            return Inertia::render("Prototype/Dashboard");
-        })->name('dashboard');
-    });
+    
 
     route::get('/subscription',function(){
         // return Inertia::render("Prototype/Register");
         return Inertia::render("Prototype/Subscription");
     })->name('subscription');
 
-    route::get('/anime/{id}',function(){
-        // return Inertia::render("Prototype/Register");
-        return Inertia::render("Prototype/Anime/AnimeDetail");
-    })->name('anime.detail');
+    // route::get('/anime/{id}',function(){
+    //     // return Inertia::render("Prototype/Register");
+    //     return Inertia::render("Prototype/Anime/AnimeDetail");
+    // })->name('anime.detail');
     
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth','role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function (){
+    Route::get('/',[UserController::class,'index'])->middleware(['auth', 'role:user'])->name('index');
+    Route::get('/anime/{mal_id}',[AnimeController::class,'showFeatured'])->middleware(['auth', 'role:user'])->name('anime.detail');
+
+    Route::get('/anime/browse/{mal_id}',[AnimeController::class,'showBrowse'])->middleware(['auth', 'role:user'])->name('anime.detail.browse');
+});
 
 
 
