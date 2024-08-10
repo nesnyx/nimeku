@@ -1,6 +1,7 @@
+import { useForm } from "@inertiajs/react";
 import { useState,useRef } from "react"
 
-export default function Topbar(){
+export default function Topbar({name}){
 
     const [dropdownOpen,setdropdownOpen] = useState(true);
     const dropdownTarget = useRef();
@@ -15,13 +16,23 @@ export default function Topbar(){
 
     }
 
+    const {post} =useForm({
+        
+    })
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('logout'));
+    };
+
+
     return(
         <>
             <div className="flex justify-between items-center cursor-pointer">
                     <input  type="text" className="top-search rounded-3xl " placeholder="Search movie, cast, genre"
                         />
                     <div className="flex items-center gap-4">
-                        <span className="text-black text-sm font-medium">Welcome, Wibu!</span>
+                        <span className="text-black text-sm font-medium">Welcome, {name}!</span>
                         
                         <div className="collapsible-dropdown flex flex-col gap-2 relative">
                             <div
@@ -35,7 +46,12 @@ export default function Topbar(){
 
                                 <a href="#!" className="transition-all hover:bg-tael p-4 ">Dashboard</a>
                                 <a href="#!" className="transition-all hover:bg-tael p-4 ">Settings</a>
-                                <a href="#!" className="transition-all hover:bg-tael p-4">Sign Out</a>
+
+                                <form onSubmit={submit}>
+                                    <button type="submit" className="transition-all hover:bg-tael p-4">Sign Out</button>
+
+                                </form>
+                                
                             </div>
                         </div>
                     </div>

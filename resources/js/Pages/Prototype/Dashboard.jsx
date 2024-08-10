@@ -7,40 +7,40 @@ import AnimeBrowse from '@/Components/AnimeBrowse';
 export default function Dashboard(){
     
 
-    const [anime, setAnime] = useState([])
-    const [browse, setBrowse] = useState([])
+    // const [anime, setAnime] = useState([])
+    // const [browse, setBrowse] = useState([])
 
-    function getDataFromAPI(apiUrl){
-        return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => data['data'])
-        .catch(error => console.error(error))
-    }
+    // function getDataFromAPI(apiUrl){
+    //     return fetch(apiUrl)
+    //     .then(response => response.json())
+    //     .then(data => data['data'])
+    //     .catch(error => console.error(error))
+    // }
 
-    function getJikanApi(apiUrl){
-        return fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => data['data'])
-        .catch(error => console.error(error))
-    }
+    // function getJikanApi(apiUrl){
+    //     return fetch(apiUrl)
+    //     .then(response => response.json())
+    //     .then(data => data['data'])
+    //     .catch(error => console.error(error))
+    // }
 
-    useEffect(()=>{
-        async function fetchData(){
-            const result = await getJikanApi('https://api.jikan.moe/v4/seasons/now?limit=10')
-            setBrowse(result)
-        }
-        fetchData();
-    }, [])
+    // useEffect(()=>{
+    //     async function fetchData(){
+    //         const result = await getJikanApi('https://api.jikan.moe/v4/seasons/now?limit=10')
+    //         setBrowse(result)
+    //     }
+    //     fetchData();
+    // }, [])
 
 
-    useEffect(()=>{
-        async function fetchData(){
-            const result = await getDataFromAPI('https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&limit=5')
-            setAnime(result)
-        }
-        fetchData();
+    // useEffect(()=>{
+    //     async function fetchData(){
+    //         const result = await getDataFromAPI('https://api.jikan.moe/v4/top/anime?type=tv&filter=bypopularity&limit=5')
+    //         setAnime(result)
+    //     }
+    //     fetchData();
 
-    }, [])
+    // }, [])
 
     
     return (

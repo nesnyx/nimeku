@@ -90,7 +90,7 @@ export default function Login(){
                             
                            </Link>
 
-                            <Link href={route('prototype.register')}>
+                            <Link href={route('register')}>
                                 <RegisterButton
                                 
                                 type={"button"}

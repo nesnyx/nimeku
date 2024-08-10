@@ -1,6 +1,7 @@
 import Button from '@/Components/Button'
 import { Link } from '@inertiajs/react'
 
+
 export default function SubscriptionCard({id,name,price,durationInMonth,features,isPremium,onSelectSubscription}){
     return(
         <>
