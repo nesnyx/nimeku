@@ -22,6 +22,8 @@ class SubscriptionPlanController extends Controller
 
 
     public function index(){
+        
+
         return $this->subscriptionPlanRepositoryInterface->index();
     }
 

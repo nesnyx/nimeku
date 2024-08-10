@@ -22,6 +22,7 @@ export default function Subscription({auth, plans}){
                 <p className="text-base text-gray-1 leading-7 max-w-[302px] text-center">
                     Utilize your funds for this platform and watch anime to be weebo!
                 </p>
+                <p></p>
 
                
                 <div className="flex justify-center gap-10 mt-[70px]">

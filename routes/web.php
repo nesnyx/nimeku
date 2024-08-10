@@ -38,13 +38,13 @@ Route::prefix("prototype")->name('prototype.')->group(function (){
 
 Route::middleware(['auth','role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function (){
     Route::get('/',[UserController::class,'index'])->middleware(['auth', 'role:user'])->name('index');
-    Route::get('/anime/{mal_id}',[AnimeController::class,'showFeatured'])->middleware(['auth', 'role:user'])->name('anime.detail');
+    Route::get('/anime/{mal_id}',[AnimeController::class,'showFeatured'])->middleware(['auth', 'role:user','checkUserSubscription:true'])->name('anime.detail');
 
-    Route::get('/anime/browse/{mal_id}',[AnimeController::class,'showBrowse'])->middleware(['auth', 'role:user'])->name('anime.detail.browse');
+    Route::get('/anime/browse/{mal_id}',[AnimeController::class,'showBrowse'])->middleware(['auth', 'role:user','checkUserSubscription:true'])->name('anime.detail.browse');
 
-    Route::get("subscription-plan", [SubscriptionPlanController::class, "index"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.index");
+    Route::get("subscription-plan", [SubscriptionPlanController::class, "index"])->middleware(['auth', 'role:user','checkUserSubscription:false'])->name("subscriptionPlan.index");
 
-    Route::post("subscription-plan/{subscriptionPlan}/user-subscribe", [SubscriptionPlanController::class, "userSubscribe"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.subscribe");
+    Route::post("subscription-plan/{subscriptionPlan}/user-subscribe", [SubscriptionPlanController::class, "userSubscribe","checkUserSubscription:false"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.subscribe");
 });
 
 
