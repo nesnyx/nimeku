@@ -7,7 +7,7 @@ export default function ValidationErrors({errors}){
                 <div className="font-medium text-red-600">
                     <div className="mt-3 list-disc list-inside text-sm text-red-600">
                         {Object.key(errors).map(function (key,index){
-                            return <li key={index}>{errors[key]}</li>
+                            return <li key={index}>{errors(key)}</li>
                         })}
                     </div>
                 </div>

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\AnimeController;
 use App\Http\Controllers\User\Dashboard\UserController;
+use App\Http\Controllers\User\SubscriptionPlanController;
+use App\Models\SubscriptionPlan;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,6 +41,10 @@ Route::middleware(['auth','role:user'])->prefix('dashboard')->name('user.dashboa
     Route::get('/anime/{mal_id}',[AnimeController::class,'showFeatured'])->middleware(['auth', 'role:user'])->name('anime.detail');
 
     Route::get('/anime/browse/{mal_id}',[AnimeController::class,'showBrowse'])->middleware(['auth', 'role:user'])->name('anime.detail.browse');
+
+    Route::get("subscription-plan", [SubscriptionPlanController::class, "index"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.index");
+
+    Route::post("subscription-plan/{subscriptionPlan}/user-subscribe", [SubscriptionPlanController::class, "userSubscribe"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.subscribe");
 });
 
 
