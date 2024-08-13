@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AnimeController as AdminAnimeController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\AnimeController;
 use App\Http\Controllers\User\Dashboard\UserController;
@@ -36,6 +38,8 @@ Route::prefix("prototype")->name('prototype.')->group(function (){
     
 });
 
+
+// Role User
 Route::middleware(['auth','role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function (){
     Route::get('/',[UserController::class,'index'])->middleware(['auth', 'role:user'])->name('index');
     Route::get('/anime/{mal_id}',[AnimeController::class,'showFeatured'])->middleware(['auth', 'role:user','checkUserSubscription:true'])->name('anime.detail');
@@ -46,6 +50,16 @@ Route::middleware(['auth','role:user'])->prefix('dashboard')->name('user.dashboa
 
     Route::post("subscription-plan/{subscriptionPlan}/user-subscribe", [SubscriptionPlanController::class, "userSubscribe","checkUserSubscription:false"])->middleware(['auth', 'role:user'])->name("subscriptionPlan.subscribe");
 });
+
+
+
+// Role Admin
+Route::middleware(['auth','role:admin'])->prefix('admin')->name('admin.dashboard.')->group(function (){
+    Route::resource('anime',AdminAnimeController::class);
+    // Route::get('/anime',[AdminAnimeController::class,"index"])->name("index");
+    
+});
+
 
 
 
