@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(SubscriptionPlanRepositoryInterace::class,SubscriptionPlanService::class);
-
         $this->app->bind(ApiRepositoryInterface::class,ApiService::class);
         $this->app->bind(AdminRepositoryInterface::class,AdminService::class);
         $this->app->bind(AdminRoleRepositoryInterface::class,AdminRoleService::class);

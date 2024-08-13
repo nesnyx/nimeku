@@ -81,6 +81,10 @@ class AnimeController extends Controller
      */
     public function destroy(Anime $anime)
     {
-        //
+        return $this->adminRepositoryInterface->destroy($anime);
+    }
+
+    public function restore($anime){
+        return $this->adminRepositoryInterface->restore($anime);
     }
 }

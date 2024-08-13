@@ -1,11 +1,13 @@
 import Button from "@/Components/Button"
 import FlashMessage from "@/Components/FlashMessage"
 import Authenticated from "@/Layouts/Authenticated/Authenticated"
-import { Link,Head } from "@inertiajs/react"
+import { Link,Head, useForm } from "@inertiajs/react"
 
 
 export default function Index({auth , flash_message, animes}){
     
+    const {delete : destroy ,put} = useForm()
+
     return(
         
         <>
@@ -54,9 +56,14 @@ export default function Index({auth , flash_message, animes}){
                                         </Link>
                                     </td>
                                     <td>
-                                        <Button type={"button"}>
-                                        Delete
-                                        </Button>
+                                        <div onClick={()=>{
+                                            anime.deleted_at ? put(route('admin.dashboard.anime.restore',anime.id)) : 
+                                            destroy(route('admin.dashboard.anime.destroy',anime.id))
+                                        }}>
+                                            <Button type={"button"}>
+                                                {anime.deleted_at ? "Restore" : "Delete"}
+                                            </Button>
+                                        </div>
                                     </td>
                             </tr>
                         ))}
