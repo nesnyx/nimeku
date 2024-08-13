@@ -29,9 +29,8 @@ export default function Topbar({name}){
     return(
         <>
             <div className="flex justify-between items-center cursor-pointer">
-                    <input  type="text" className="top-search rounded-3xl " placeholder="Search movie, cast, genre"
-                        />
-                    <div className="flex items-center gap-4">
+                    <div className="flex"></div>
+                    <div className="flex items-center gap-4 flex-row-reverse">
                         <span className="text-black text-sm font-medium">Welcome, {name}!</span>
                         
                         <div className="collapsible-dropdown flex flex-col gap-2 relative">

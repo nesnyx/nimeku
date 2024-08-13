@@ -64,7 +64,7 @@ class User extends Authenticatable
     }
 
     public function lastActiveUsersSubscription(): HasOne {
-        return $this->hasOne(UserScription::class)->wherePaymentStatus('success')->latest();
+        return $this->hasOne(UserScription::class)->wherePaymentStatus('paid')->latest();
     }
 
 
