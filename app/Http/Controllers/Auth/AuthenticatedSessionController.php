@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        
+        $user = new User();
+        $findUserById = $user->where('id',Auth::id())->first();
+        $role = $findUserById->hasRole('admin');
+        
+        if($role){
+            return redirect()->route('admin.dashboard.anime.index');
+        }
+        
 
         return redirect()->intended(route('user.dashboard.index', absolute: false));
     }
