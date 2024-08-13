@@ -10,6 +10,7 @@ use App\Interfaces\SubscriptionPlanRepositoryInterace;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+
 class SubscriptionPlanController extends Controller
 {
 
@@ -32,10 +33,14 @@ class SubscriptionPlanController extends Controller
             "user_id"=>Auth::id(),
             "subscription_plan_id" => $subscriptionPlan->id,
             "price"=>$subscriptionPlan->price,
-            "expired_date"=> Carbon::now()->addMonth($subscriptionPlan->active_period_in_months),
-            'payment_status' => "success",
-            "snap_token"=>''
+            // "expired_date"=> Carbon::now()->addMonth($subscriptionPlan->active_period_in_months),
+            'payment_status' => "pending"
+            
         ];
         return $this->subscriptionPlanRepositoryInterface->userSubscribe($data);
+    }
+
+    public function midtransCallback(Request $request){
+        return $this->subscriptionPlanRepositoryInterface->midtransCallback($request);
     }
 }

@@ -14,6 +14,10 @@ use Inertia\Inertia;
 Route::redirect("/","/login");
 
 
+
+// Midtrans Route
+Route::post('midtrans/notification',[SubscriptionPlanController::class, 'midtransCallback']);
+
 Route::prefix("prototype")->name('prototype.')->group(function (){
     route::get('/login',function(){
         return Inertia::render("Prototype/Login");
