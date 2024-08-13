@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Anime\StoreRequest;
+use App\Http\Requests\Admin\Anime\UpdateRequest;
 use App\Interfaces\AdminRepositoryInterface;
 use App\Models\Anime;
 use Illuminate\Http\Request;
@@ -56,15 +57,23 @@ class AnimeController extends Controller
      */
     public function edit(Anime $anime)
     {
-        //
+       return $this->adminRepositoryInterface->edit($anime);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Anime $anime)
+    public function update(UpdateRequest $request, Anime $anime)
     {
-        //
+        $data = $request->validated();
+        if($request->file('thumbnail')){
+            $data['thumbnail'] = Storage::disk('public')->put('animes', $request->file('thumbnail'));
+            Storage::disk('public')->delete($anime->thumbnail);
+        } else {
+            $data['thumbnail'] = $anime->thumbnail;
+        }
+        return $this->adminRepositoryInterface->update($data, $anime);
+        
     }
 
     /**
